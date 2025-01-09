@@ -21,14 +21,8 @@ devices:
   - name: "Netgear_GS108T_Switch"
     ip: "192.168.0.6"
 
-  - name: "Cisco_SG300-10_Switch"
-    ip: "192.168.0.7"
-
   - name: "Ubiquiti_AP_AC_Lite_Living_Room"
     ip: "192.168.0.8"
-
-  - name: "TPLink_WPA4220"
-    ip: "192.168.0.9"
 
   - name: "Netgear_GS108E_Switch"
     ip: "192.168.0.10"
@@ -81,9 +75,6 @@ devices:
   - name: "SMLight_SZLB06_Coordinator"
     ip: "192.168.0.26"
 
-  - name: "SMLight_SZLB06_Coordinator_WiFi"
-    ip: "192.168.0.27"
-
   - name: "Octopus_Mini"
     ip: "192.168.0.28"
 
@@ -99,21 +90,11 @@ devices:
   - name: "ESP32_ESPresence_Study"
     ip: "192.168.0.32"
 
-
   - name: "WS2MQTT_Gateway"
     ip: "192.168.0.41"
 
-  - name: "SMLight_SZLB06_Router"
-    ip: "192.168.0.42"
-
   - name: "SMLight_SZLB06_Router_WiFi"
     ip: "192.168.0.43"
-
-  - name: "Linksys_Gigaclear_Router"
-    ip: "192.168.0.44"
-
-  - name: "SMLight_SZLB06_Router_Outside"
-    ip: "192.168.0.45"
 
   - name: "SMLight_SZLB06_Router_Outside_WiFi"
     ip: "192.168.0.46"
