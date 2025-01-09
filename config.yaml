@@ -1,0 +1,126 @@
+listen_ip: "0.0.0.0"
+listen_port: 12345
+ping_interval: 15
+devices:
+
+  - name: "EdgeRouter_X"
+    ip: "192.168.0.1"
+
+  - name: "Ubiquiti_AP_AC_Pro_Kitchen_Wired"
+    ip: "192.168.0.2"
+
+  - name: "Ubiquiti_AP_AC_Pro_Kitchen"
+    ip: "192.168.0.3"
+
+  - name: "Ubiquiti_AP_AC_LR_Gym"
+    ip: "192.168.0.4"
+
+  - name: "Netgear_GS308T_Switch"
+    ip: "192.168.0.5"
+
+  - name: "Netgear_GS108T_Switch"
+    ip: "192.168.0.6"
+
+  - name: "Cisco_SG300-10_Switch"
+    ip: "192.168.0.7"
+
+  - name: "Ubiquiti_AP_AC_Lite_Living_Room"
+    ip: "192.168.0.8"
+
+  - name: "TPLink_WPA4220"
+    ip: "192.168.0.9"
+
+  - name: "Netgear_GS108E_Switch"
+    ip: "192.168.0.10"
+
+  - name: "Ubiquiti_AP_AC_Pro_Office"
+    ip: "192.168.0.19"
+
+  - name: "Netgear_GS105E2_Switch"
+    ip: "192.168.0.18"
+
+  - name: "Ubiquiti_AP_AC_Pro_Upstairs"
+    ip: "192.168.0.17"
+
+  - name: "Netgear_GS724T_Switch"
+    ip: "192.168.0.20"
+
+  - name: "Hive_Hub"
+    ip: "192.168.0.11"
+
+  - name: "Yale_Hub"
+    ip: "192.168.0.12"
+
+  - name: "Hue_Hub"
+    ip: "192.168.0.13"
+
+  - name: "SwitchBot_Hub_Living_Room"
+    ip: "192.168.0.14"
+
+  - name: "FireAngel_Hub"
+    ip: "192.168.0.15"
+
+  - name: "Hive_Hub_Annex"
+    ip: "192.168.0.16"
+
+  - name: "DIYMore_Relay_Controller"
+    ip: "192.168.0.21"
+
+  - name: "Ecowitt_GW1100_Gateway"
+    ip: "192.168.0.22"
+
+  - name: "ESP32_Bluetooth_Proxy_Office"
+    ip: "192.168.0.23"
+
+  - name: "ESP32_Bluetooth_Proxy_Downstairs"
+    ip: "192.168.0.24"
+
+  - name: "ESP32_Bluetooth_Proxy_Upstairs"
+    ip: "192.168.0.25"
+
+  - name: "SMLight_SZLB06_Coordinator"
+    ip: "192.168.0.26"
+
+  - name: "SMLight_SZLB06_Coordinator_WiFi"
+    ip: "192.168.0.27"
+
+  - name: "Octopus_Mini"
+    ip: "192.168.0.28"
+
+  - name: "ESP32_ESPresence_Office"
+    ip: "192.168.0.29"
+
+  - name: "ESP32_ESPresence_Living_Room"
+    ip: "192.168.0.30"
+
+  - name: "ESP32_ESPresence_Guest_Bedroom_3"
+    ip: "192.168.0.31"
+
+  - name: "ESP32_ESPresence_Study"
+    ip: "192.168.0.32"
+
+
+  - name: "WS2MQTT_Gateway"
+    ip: "192.168.0.41"
+
+  - name: "SMLight_SZLB06_Router"
+    ip: "192.168.0.42"
+
+  - name: "SMLight_SZLB06_Router_WiFi"
+    ip: "192.168.0.43"
+
+  - name: "Linksys_Gigaclear_Router"
+    ip: "192.168.0.44"
+
+  - name: "SMLight_SZLB06_Router_Outside"
+    ip: "192.168.0.45"
+
+  - name: "SMLight_SZLB06_Router_Outside_WiFi"
+    ip: "192.168.0.46"
+
+  - name: "ESP32_Garage_Door_Opener"
+    ip: "192.168.0.47"
+
+  - name: "RaspberryPiW2_UPSMonitor_Kitchen"
+    ip: "192.168.0.48"
+

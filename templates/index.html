@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Status Tracker</title>
+    <script>
+        async function fetchStatuses() {
+            const response = await fetch('/status');
+            const statuses = await response.json();
+            const tableBody = document.getElementById('statuses');
+            tableBody.innerHTML = '';
+            for (const [name, data] of Object.entries(statuses)) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${data.status}</td>
+                    <td>${data.ping_time || 'N/A'}</td>
+                    <td>${data.last_pingable || 'Never'}</td>
+                `;
+                tableBody.appendChild(row);
+            }
+        }
+        setInterval(fetchStatuses, 5000);
+        window.onload = fetchStatuses;
+    </script>
+</head>
+<body>
+    <h1>Device Status Tracker</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Device Name</th>
+                <th>Status</th>
+                <th>Ping Time (ms)</th>
+                <th>Last Reachable</th>
+            </tr>
+        </thead>
+        <tbody id="statuses"></tbody>
+    </table>
+</body>
+</html>
+
