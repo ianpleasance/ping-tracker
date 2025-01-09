@@ -7,9 +7,9 @@ Ping Tracker is a lightweight tool for monitoring the status of network devices.
 - The ping time (in milliseconds) if reachable.
 - The last time the device was reachable, if currently unreachable.
 
-This tool is containerized for easy deployment using Docker.
+This tool is containerized for easy deployment using Docker, it uses Python, Flask, and ping.
 
-It does nothing that fully fledged network monitors can do (and can do much better) but for diagnosing a network mesh problem I needed to be able to run a very lightweight tool on multiple low-power devices like routers and Raspberry PI Ws, so that I could work out where the mesh hardware was failing.
+It does nothing that fully fledged network monitors can do (and can do much better). For diagnosing a network mesh problem I needed to be able to run a very lightweight tool on multiple low-power devices like routers and Raspberry PI Ws, and installing a full network monitor or agent on each device would have been excessive.
 
 ---
 
@@ -37,8 +37,8 @@ devices:                       # List of devices to monitor
 ```
 
 ### Parameters
-- `listen_ip`: The IP address the Flask app will listen on (default: `0.0.0.0`).
-- `listen_port`: The port the Flask app will listen on (default: `12345`).
+- `listen_ip`: The IP address the web server will listen on (default: `0.0.0.0` - ie all local interfaces/IPs).
+- `listen_port`: The port the web server will listen on (default: `12345`).
 - `ping_interval`: Time interval (in seconds) between consecutive pings (default: `10`).
 - `devices`: A list of devices, each with a `name` and `ip`.
 
@@ -54,7 +54,7 @@ devices:                       # List of devices to monitor
 The project directory should have the following structure:
 
 ```
-device_status_tracker/
+ping-tracker/
 ├── app.py               # The main Python application
 ├── config.yaml          # Configuration file
 ├── requirements.txt     # Python dependencies
@@ -67,7 +67,7 @@ device_status_tracker/
 
 1. **Navigate to the project directory**:
    ```bash
-   cd device_status_tracker
+   cd ping-tracker
    ```
 
 2. **Build the Docker image**:
@@ -121,8 +121,9 @@ After changes, restart the Docker container or the Python application.
 
 If you have a spreadsheet of device names (Column 1) and IP addresses (Column 2) and save it as devices.csv then this command will turn it into yaml suitable for addition to config.yaml
 
-```tr -d '\r' < devices.csv | awk 'BEGIN { FS="," } { if ($1 != "") print "  - name: \"" $1 "\"\n    ip: \"" $2 "\"\n"; else print "" }' >temp.yaml
-```
+   ```bash
+tr -d '\r' < devices.csv | awk 'BEGIN { FS="," } { if ($1 != "") print "  - name: \"" $1 "\"\n    ip: \"" $2 "\"\n"; else print "" }' >temp.yaml
+   ```
 
 ---
 
