@@ -1,5 +1,5 @@
 #
-# Version 1.0.0 - 08/01/2025
+# Version 1.1 - 10/01/2025
 #
 from flask import Flask, jsonify, render_template
 import subprocess
@@ -11,6 +11,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__)
 
+CONFIG_FILE = "config.yaml"
+
 # Global dictionary to store device information
 devices = {}
 device_statuses = {}
@@ -18,16 +20,20 @@ config = {
     "listen_ip": "0.0.0.0",
     "listen_port": 12345,
     "ping_interval": 10,
+    "show_ip": False,
+    "use_colour": False
 }
 
 # Read configuration from config.yaml file
-def load_config(file_path="config.yaml"):
+def load_config(file_path=CONFIG_FILE):
     global config
     with open(file_path, "r") as f:
         user_config = yaml.safe_load(f)
         config["listen_ip"] = user_config.get("listen_ip", config["listen_ip"])
         config["listen_port"] = user_config.get("listen_port", config["listen_port"])
         config["ping_interval"] = user_config.get("ping_interval", config["ping_interval"])
+        config["show_ip"] = user_config.get("show_ip", config["show_ip"])
+        config["use_colour"] = user_config.get("use_colour", config["use_colour"])
 
 # Read devices from config.yaml file
 def load_devices(file_path="config.yaml"):
@@ -40,7 +46,8 @@ def load_devices(file_path="config.yaml"):
             device_statuses[name] = {
                 "status": "Unknown", 
                 "ping_time": None, 
-                "last_pingable": None
+                "last_pingable": None,
+                "ip": ip
             }
 
 # Function to ping a single device
@@ -56,20 +63,23 @@ def ping_device(name, ip):
             device_statuses[name] = {
                 "status": "Reachable", 
                 "ping_time": ping_time, 
-                "last_pingable": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                "last_pingable": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                "ip": ip
             }
         else:
             if device_statuses[name]["status"] == "Reachable":
                 device_statuses[name]["last_pingable"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             device_statuses[name]["status"] = "Unreachable"
             device_statuses[name]["ping_time"] = None
+            device_statuses[name]["ip"] = ip
     except Exception as e:
         if device_statuses[name]["status"] == "Reachable":
             device_statuses[name]["last_pingable"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         device_statuses[name] = {
             "status": "Error", 
             "ping_time": None, 
-            "last_pingable": device_statuses[name].get("last_pingable")
+            "last_pingable": device_statuses[name].get("last_pingable"),
+            "ip": ip
         }
 
 # Function to ping devices in parallel
@@ -89,7 +99,7 @@ def status():
 # Route to serve the web interface
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", show_ip = config["show_ip"], use_colour = config["use_colour"])
 
 if __name__ == "__main__":
     # Load configuration and devices

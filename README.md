@@ -1,5 +1,5 @@
 
-# Ping Tracker - V1.0 - 08/01/2025
+# Ping Tracker - V1.1 - 10/01/2025
 
 ## Purpose
 Ping Tracker is a lightweight tool for monitoring the status of network devices. It continuously pings a list of devices at specified intervals and provides a web-based interface to display their statuses, including:
@@ -29,6 +29,8 @@ The application uses a `config.yaml` file for configuration. Below is an example
 listen_ip: "0.0.0.0"          # IP address the web server listens on
 listen_port: 12345             # Port the web server listens on
 ping_interval: 15              # Interval in seconds between ping cycles
+show_ip: True                  # Optionally show IP addresses
+use_color: True                # Optionally highlight reachable/unreachable in green/red
 devices:                       # List of devices to monitor
   - name: "Device 1"
     ip: "192.168.1.1"
@@ -40,6 +42,8 @@ devices:                       # List of devices to monitor
 - `listen_ip`: The IP address the web server will listen on (default: `0.0.0.0` - ie all local interfaces/IPs).
 - `listen_port`: The port the web server will listen on (default: `12345`).
 - `ping_interval`: Time interval (in seconds) between consecutive pings (default: `10`).
+- `show_ip`: If True, then show the IP addresses (default: `True`).
+- `use_colour`: If True, then highlight reachable/unreachable in green/red (default: `True`).
 - `devices`: A list of devices, each with a `name` and `ip`.
 
 ---

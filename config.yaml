@@ -1,6 +1,8 @@
 listen_ip: "0.0.0.0"
 listen_port: 12345
 ping_interval: 15
+show_ip: True
+use_colour: True
 devices:
 
   - name: "EdgeRouter_X"

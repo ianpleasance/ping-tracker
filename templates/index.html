@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Ping Status Tracker</title>
+    {% if use_colour %}
+    <style>
+        .reachable { color: green; }
+        .unreachable { color: red; }
+    </style>
+    {% endif %}
     <script>
         async function fetchStatuses() {
             const response = await fetch('/status');
@@ -10,9 +18,13 @@
             tableBody.innerHTML = '';
             for (const [name, data] of Object.entries(statuses)) {
                 const row = document.createElement('tr');
+                const statusClass = data.status === 'Reachable' ? 'reachable' : 'unreachable';
                 row.innerHTML = `
                     <td>${name}</td>
-                    <td>${data.status}</td>
+                    {% if show_ip %}
+                    <td>${data.ip}</td>
+                    {% endif %}
+                    <td class="${statusClass}">${data.status}</td>
                     <td>${data.ping_time || 'N/A'}</td>
                     <td>${data.last_pingable || 'Never'}</td>
                 `;
@@ -29,6 +41,9 @@
         <thead>
             <tr>
                 <th>Device Name</th>
+                {% if show_ip %}
+                <th>IP Address</th>
+                {% endif %}
                 <th>Status</th>
                 <th>Ping Time (ms)</th>
                 <th>Last Reachable</th>
